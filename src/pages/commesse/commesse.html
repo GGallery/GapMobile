@@ -5,12 +5,25 @@
 </ion-header>
 
 <ion-content padding>
- 
+
   <h3>Inserisci commessa</h3>
 
-<ion-select [(ngModel)]="gender">
+  <ion-select [(ngModel)]="gender">
     <ion-option value="f">Female</ion-option>
     <ion-option value="m">Male</ion-option>
   </ion-select>
+
+
+  <ion-item-group>
+    <ion-item-divider color="light">A</ion-item-divider>
+    <ion-item>Angola</ion-item>
+    <ion-item>Argentina</ion-item>
+  </ion-item-group>
+
+  <button ion-button icon-left (click)="presentToast()">
+  <ion-icon name="home"></ion-icon>
+  Left Icon
+</button>
+
 
 </ion-content>
