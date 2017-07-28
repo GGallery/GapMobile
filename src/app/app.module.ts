@@ -12,6 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeriePage } from "../pages/ferie/ferie";
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { CommessePage } from "../pages/commesse/commesse";
+import { CommesseServices } from "./services/commesse.services";
+import { HttpModule } from "@angular/http";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -32,7 +34,8 @@ const cloudSettings: CloudSettings = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-     CloudModule.forRoot(cloudSettings)
+     CloudModule.forRoot(cloudSettings),
+      HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +50,9 @@ const cloudSettings: CloudSettings = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CommesseServices
+
   ]
 })
 export class AppModule {}

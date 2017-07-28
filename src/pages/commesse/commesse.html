@@ -14,11 +14,13 @@
   </ion-select>
 
 
-  <ion-item-group>
-    <ion-item-divider color="light">A</ion-item-divider>
-    <ion-item>Angola</ion-item>
-    <ion-item>Argentina</ion-item>
-  </ion-item-group>
+  <ion-list>
+    <ion-item *ngFor="let item of commesseList">
+        <h3>{{item.oggetto }} </h3>
+        <ion-note>{{ item.protocollo }} ({{item.id}})</ion-note>
+    </ion-item>
+  </ion-list>
+
 
   <button ion-button icon-left (click)="presentToast()">
   <ion-icon name="home"></ion-icon>
