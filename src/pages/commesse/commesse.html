@@ -6,26 +6,22 @@
 
 <ion-content padding>
 
-  <h3>Inserisci commessa</h3>
-
-  <ion-select [(ngModel)]="gender">
-    <ion-option value="f">Female</ion-option>
-    <ion-option value="m">Male</ion-option>
-  </ion-select>
-
-
+  <h3>Seleziona commessa</h3>
+ 
+<!-- <div [id]=loading>Sto caricando le tue commesse</div> -->
+<ion-searchbar (ionInput)="filtra($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of commesseList">
+    <ion-item *ngFor="let item of commesseList" (click)="selectItem(item.id)">
         <h3>{{item.oggetto }} </h3>
         <ion-note>{{ item.protocollo }} ({{item.id}})</ion-note>
     </ion-item>
   </ion-list>
 
+ 
 
-  <button ion-button icon-left (click)="presentToast()">
-  <ion-icon name="home"></ion-icon>
-  Left Icon
-</button>
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="getAll()"><ion-icon name="albums"></ion-icon></button>
+  </ion-fab>
 
 
 </ion-content>

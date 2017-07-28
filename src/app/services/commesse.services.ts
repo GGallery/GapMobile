@@ -1,8 +1,6 @@
-
-
 import { Commessa } from "../models/commessa";
 import { Injectable } from "@angular/core";
-import { Headers, Http, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from "rxjs/Rx";
 // import 'rxjs/Rx';
 // import { Observable } from 'rxjs/Observable';
@@ -12,27 +10,20 @@ import { Observable } from "rxjs/Rx";
 export class CommesseServices {
 
     commesse: Commessa[] = [];
-    url: string = 'http://localhost/database.php';
+    url: string = 'http://www.tvsalute.net/database.php';
 
     constructor(private http: Http) {
-        this.commesse = [
-            { id: 1, protocollo: this.generateProtocollo(), oggetto: 'test1' },
-            { id: 2, protocollo: this.generateProtocollo(), oggetto: 'test2' },
-            { id: 3, protocollo: this.generateProtocollo(), oggetto: 'test3' }
-        ]
+
     }
-
-
+ 
     generateProtocollo(): string {
-
         let valore = "G" + Math.random() * 100;
         return valore;
     }
 
-    getItems() {
-        // return this.commesse;
-        const header = new Headers({'Content-type': 'application/json'});
-        return this.http.get(this.url + "?method=get")
+    getItems(method) {
+
+        return this.http.get(this.url + "?method="+method)
             .map(
             (response: Response) => {
                 const data = response.json();
@@ -45,8 +36,8 @@ export class CommesseServices {
                 return Observable.throw('Errore in lettura');
             }
             )
-
     }
+
 
 
 
