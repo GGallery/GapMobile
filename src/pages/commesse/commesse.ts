@@ -30,9 +30,7 @@ export class CommessePage implements OnInit {
     this.commesseService.getItems('getMy').
       subscribe(
       (commesse: any[]) => {
-        this.commesseList = commesse,
-          this.Toast("Commesse caricate")
-        console.log(this.commesseList)
+        this.commesseList = commesse      
       },
       (error) => {
         console.log(error),
@@ -45,8 +43,8 @@ export class CommessePage implements OnInit {
     this.commesseService.getItems('getAll').
       subscribe(
       (commesse: any[]) => {
-        this.commesseList = commesse,
-        console.log(this.commesseList)
+        this.commesseList = commesse
+      
       },
       (error) => {
         console.log(error),
