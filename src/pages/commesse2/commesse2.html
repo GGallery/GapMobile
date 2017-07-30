@@ -9,52 +9,47 @@
   <h3> Commessa: {{ commessa.oggetto }} ({{ commessa.protocollo }}) </h3>
 
 
+  <ion-item>
+    <ion-label>Data</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Durata</ion-label>
+    <ion-input type="number"></ion-input>
+  </ion-item>
 
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6>Data</ion-col>
-      <ion-col col-6>
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno"></ion-datetime>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>Tipologia</ion-col>
-      <ion-col col-6>
-        <ion-list radio-group [(ngModel)]="tipologia">
-          <ion-item>
-            <ion-label>Normale</ion-label>
-            <ion-radio checked="true" value="1"></ion-radio>
-          </ion-item>
+  <ion-list radio-group [(ngModel)]="tipologia">
 
-          <ion-item>
-            <ion-label>Recupero+</ion-label>
-            <ion-radio value="2"></ion-radio>
-          </ion-item>
+    <ion-list-header>
+      Tipologia
+    </ion-list-header>
 
-          <ion-item>
-            <ion-label>Straordinario</ion-label>
-            <ion-radio value="3"></ion-radio>
-          </ion-item>
+    <ion-item>
+      <ion-label>Normale</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
 
-          <ion-item>
-            <ion-label>Malattia</ion-label>
-            <ion-radio value="4"></ion-radio>
-          </ion-item>
-        </ion-list>
+    <ion-item>
+      <ion-label>Recupero+</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
 
-      </ion-col>
-    </ion-row>
+    <ion-item>
+      <ion-label>Straordinario</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Malattia</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
 
 
+  </ion-list>
 
-    <ion-row>
-      <ion-col col-6>Durata</ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <button ion-button large full>INSERISCI</button>
+
 </ion-content>
