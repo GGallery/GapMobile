@@ -1,55 +1,76 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Dettagli</ion-title>
+    <ion-title>{{ commessa.oggetto }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <h3> Commessa: {{ commessa.oggetto }} ({{ commessa.protocollo }}) </h3>
+  <h4> {{ commessa.oggetto }} ({{ commessa.protocollo }}) </h4>
+
+  <form #f="ngForm" (ngSubmit)="onInserisciCommessa(f)">
+
+    <ion-input type="number" name="id_commessa" [(ngModel)]="id_commessa" hidden></ion-input>
 
 
-  <ion-item>
-    <ion-label>Data</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno"></ion-datetime>
-  </ion-item>
+    <button type="button" ion-button small (click)="dataOggi()">Oggi</button>
+    <button type="button" ion-button small (click)="dataIeri()">Ieri</button>
+    <button type="button" ion-button small (click)="dataPrima()">PRIMA</button>
+    <button type="button" ion-button small (click)="dataDopo()">DOPO</button>
 
-  <ion-item>
-    <ion-label>Durata</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
-
-
-  <ion-list radio-group [(ngModel)]="tipologia">
-
-    <ion-list-header>
-      Tipologia
-    </ion-list-header>
 
     <ion-item>
-      <ion-label>Normale</ion-label>
-      <ion-radio value="1"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Recupero+</ion-label>
-      <ion-radio value="2"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Straordinario</ion-label>
-      <ion-radio value="3"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Malattia</ion-label>
-      <ion-radio value="4"></ion-radio>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno" name="giorno"></ion-datetime>
     </ion-item>
 
 
-  </ion-list>
+
+    <button type="button" ion-button small (click)="nOre(1)">1</button>
+    <button type="button" ion-button small (click)="nOre(2)">2</button>
+    <button type="button" ion-button small (click)="nOre(3)">3</button>
+    <button type="button" ion-button small (click)="nOre(4)">4</button>
+    <button type="button" ion-button small (click)="nOre(5)">5</button>
+    <button type="button" ion-button small (click)="nOre(6)">6</button>
+    <button type="button" ion-button small (click)="nOre(7)">7</button>
+    <button type="button" ion-button small (click)="nOre(8)">8</button>
+    <button type="button" ion-button small (click)="nOre(12)">1/2</button>
+
+    <ion-item>
+      <ion-label>N° ore</ion-label>
+      <ion-input type="number" name="n_ore" [(ngModel)]="n_ore"></ion-input>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="tipologia" name="tipologia">
+
+      <ion-list-header>
+        Tipologia
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Normale</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Recupero+</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Straordinario</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Malattia</ion-label>
+        <ion-radio step="0.5" min="0.5" value="4"></ion-radio>
+      </ion-item>
 
 
-  <button ion-button large full>INSERISCI</button>
+    </ion-list>
 
+
+    <button ion-button block type="submit">INSERISCI</button>
+  </form>
 </ion-content>
