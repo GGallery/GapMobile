@@ -14,6 +14,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { CommessePage } from "../pages/commesse/commesse";
 import { CommesseServices } from "./services/commesse.services";
 import { HttpModule } from "@angular/http";
+import { CommessePage2 } from "../pages/commesse2/commesse2";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -29,6 +30,7 @@ const cloudSettings: CloudSettings = {
     HomePage,
     FeriePage, 
     CommessePage,
+    CommessePage2,
     TabsPage
   ],
   imports: [
@@ -45,6 +47,7 @@ const cloudSettings: CloudSettings = {
     HomePage,
     FeriePage,
     CommessePage,
+    CommessePage2,
     TabsPage
   ],
   providers: [

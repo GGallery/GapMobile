@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { CommesseServices } from "../../app/services/commesse.services";
 import { Commessa } from "../../app/models/commessa";
+import { CommessePage2 } from "../commesse2/commesse2";
 
 @Component({
   selector: 'page-commesse',
@@ -11,6 +12,8 @@ export class CommessePage implements OnInit {
 
   commesseList: Commessa[] = []
   searchQuery: string = '';
+  
+
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -30,7 +33,7 @@ export class CommessePage implements OnInit {
     this.commesseService.getItems('getMy').
       subscribe(
       (commesse: any[]) => {
-        this.commesseList = commesse      
+        this.commesseList = commesse
       },
       (error) => {
         console.log(error),
@@ -44,7 +47,7 @@ export class CommessePage implements OnInit {
       subscribe(
       (commesse: any[]) => {
         this.commesseList = commesse
-      
+
       },
       (error) => {
         console.log(error),
@@ -53,8 +56,8 @@ export class CommessePage implements OnInit {
       )
   }
 
-  selectItem(id:number){
-    console.log(id);
+  selectItem(commessa : Commessa) {
+    this.navCtrl.push(CommessePage2, commessa);
   }
 
 

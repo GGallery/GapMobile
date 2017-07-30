@@ -1,17 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Gestione commessa</ion-title>
+    <ion-title>Seleziona commessa</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-  <h3>Seleziona commessa</h3>
- 
 <!-- <div [id]=loading>Sto caricando le tue commesse</div> -->
 <ion-searchbar (ionInput)="filtra($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of commesseList" (click)="selectItem(item.id)">
+    <ion-item *ngFor="let item of commesseList" (click)="selectItem(item)">
         <h3>{{item.oggetto }} </h3>
         <ion-note>{{ item.protocollo }} ({{item.id}})</ion-note>
     </ion-item>
