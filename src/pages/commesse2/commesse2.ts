@@ -38,15 +38,22 @@ export class CommessePage2 {
     this.giorno = new Date().toISOString();
   }
 
+  dataIeri() {
+    let ieri = ( d => new Date(d.setDate(d.getDate()-1)) )(new Date);
+    console.log(ieri.toISOString());
+    this.giorno = ieri.toISOString();
+    console.log(this.giorno);
+
+  }
+
+
+
+
   nOre(n: number) {
-    console.log(n);
     if (n == 12)
       this.n_ore = this.n_ore + 0.5;
     else
       this.n_ore = n;
-
-
-      console.log(this.n_ore);
   }
 
 
