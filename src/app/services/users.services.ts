@@ -6,21 +6,17 @@ import { Observable } from "rxjs/Rx";
 
 
 @Injectable()
-export class CommesseServices {
+export class UsersServices {
     
     url: string = 'http://office.ggallery.it/';
 
     constructor(private http: Http) {
 
     }
- 
-    generateProtocollo(): string {
-        let valore = "G" + Math.random() * 100;
-        return valore;
-    }
 
-    getItems(method) {
+    getAssenti() {
 
+        let method = "assenti"
         return this.http.get(this.url + method)
             .map(
             (response: Response) => {
@@ -31,7 +27,7 @@ export class CommesseServices {
 
         ).catch(
             (error: Response) => {
-                return Observable.throw('Errore in lettura');
+                return Observable.throw('Errore in lettura assenti');
             }
             )
     }

@@ -15,6 +15,8 @@ import { CommessePage } from "../pages/commesse/commesse";
 import { CommesseServices } from "./services/commesse.services";
 import { HttpModule } from "@angular/http";
 import { CommessePage2 } from "../pages/commesse2/commesse2";
+import { UsersServices } from "./services/users.services";
+import { AssentiPage } from "../pages/assenti/assenti";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -31,7 +33,8 @@ const cloudSettings: CloudSettings = {
     FeriePage, 
     CommessePage,
     CommessePage2,
-    TabsPage
+    TabsPage, 
+    AssentiPage
   ],
   imports: [
     BrowserModule,
@@ -48,13 +51,15 @@ const cloudSettings: CloudSettings = {
     FeriePage,
     CommessePage,
     CommessePage2,
-    TabsPage
+    TabsPage, 
+    AssentiPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CommesseServices
+    CommesseServices, 
+    UsersServices
 
   ]
 })

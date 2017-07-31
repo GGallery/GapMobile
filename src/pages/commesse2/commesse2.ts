@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { CommesseServices } from "../../app/services/commesse.services";
-import { Commessa } from "../../app/models/commessa";
+
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -11,9 +11,9 @@ import { NgForm } from "@angular/forms";
 export class CommessePage2 {
 
 
-  commessa: Commessa
+  commessa: any
   giorno: string = new Date().toISOString()
-  tipologia: any
+  tipologia: number
   id_commessa: number;
   n_ore: number;
 
@@ -26,6 +26,7 @@ export class CommessePage2 {
   ) {
     this.commessa = this.navParam.data;
     this.id_commessa = this.commessa.id;
+    this.tipologia= 0;
 
   }
 

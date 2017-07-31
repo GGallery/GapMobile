@@ -5,8 +5,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-<!-- <div [id]=loading>Sto caricando le tue commesse</div> -->
+<ion-content >
+
 <ion-searchbar (ionInput)="filtra($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of commesseList" (click)="selectItem(item)">
