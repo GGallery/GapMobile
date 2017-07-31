@@ -22,13 +22,13 @@
 
       <ion-row>
         <ion-col col-12>
-          <button type="button" ion-button small (click)="dataOggi()">Oggi</button>
-          <button type="button" ion-button small (click)="dataIeri()">Ieri</button>
-          <button type="button" ion-button small (click)="dataPrima()">Prima</button>
-          <button type="button" ion-button small (click)="dataDopo()">Dopo</button>
+          <button type="button" ion-button  (click)="dataOggi()">Oggi</button>
+          <button type="button" ion-button  (click)="dataIeri()">Ieri</button>
+          <button type="button" ion-button  (click)="dataPrima()">Prima</button>
+          <button type="button" ion-button  (click)="dataDopo()">Dopo</button>
         </ion-col>
       </ion-row>
-
+      <br><br>
 
       <ion-item>
         <ion-label> N° ore</ion-label>
@@ -37,6 +37,7 @@
 
       <ion-row>
         <ion-col col-12>
+          <button type="button" ion-button small (click)="nOre(12)">1/2</button>
           <button type="button" ion-button small (click)="nOre(1)">1</button>
           <button type="button" ion-button small (click)="nOre(2)">2</button>
           <button type="button" ion-button small (click)="nOre(3)">3</button>
@@ -45,11 +46,10 @@
           <button type="button" ion-button small (click)="nOre(6)">6</button>
           <button type="button" ion-button small (click)="nOre(7)">7</button>
           <button type="button" ion-button small (click)="nOre(8)">8</button>
-          <button type="button" ion-button small (click)="nOre(12)">1/2</button>
         </ion-col>
       </ion-row>
- 
 
+      <br><br>
       <ion-item>
         <ion-label> Tipologia</ion-label>
         <ion-select [(ngModel)]="tipologia" name="tipologia">
@@ -59,9 +59,9 @@
           <ion-option value="7">Trasferta</ion-option>
         </ion-select>
       </ion-item>
- 
+
     </ion-grid>
- 
+
     <button ion-button block type="submit">INSERISCI</button>
   </form>
 </ion-content>
