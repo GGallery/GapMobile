@@ -12,11 +12,11 @@
 
     <ion-grid>
 
-      <ion-input type="number" name="id_commessa" [(ngModel)]="id_commessa" hidden></ion-input>
+      <ion-input type="number" name="id_commessa" [(ngModel)]="id_commessa" hidden required></ion-input>
 
       <ion-item>
         <ion-label> Data</ion-label>
-        <ion-datetime floating displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno" name="giorno"></ion-datetime>
+        <ion-datetime floating displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="giorno" name="giorno" required></ion-datetime>
       </ion-item>
 
 
@@ -32,7 +32,7 @@
 
       <ion-item>
         <ion-label> N° ore</ion-label>
-        <ion-input floating type="number" name="n_ore" [(ngModel)]="n_ore"></ion-input>
+        <ion-input floating type="number" name="n_ore" [(ngModel)]="n_ore" required></ion-input>
       </ion-item>
 
       <ion-row>
@@ -52,7 +52,7 @@
       <br><br>
       <ion-item>
         <ion-label> Tipologia</ion-label>
-        <ion-select [(ngModel)]="tipologia" name="tipologia">
+        <ion-select [(ngModel)]="tipologia" name="tipologia" required>
           <ion-option value="0">Normale</ion-option>
           <ion-option value="4">Recupero+</ion-option>
           <ion-option value="3">Straordinario</ion-option>
@@ -62,6 +62,6 @@
 
     </ion-grid>
 
-    <button ion-button block type="submit">INSERISCI</button>
+    <button [disabled]= "!f.valid" ion-button block type="submit">INSERISCI</button>
   </form>
 </ion-content>

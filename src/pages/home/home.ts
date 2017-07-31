@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
 
   CommessePage: any;
   FeriePage: any;
+  AssentiPage : any;
   AssentiOggi: any;
   AssentiFuturi: any;
 
@@ -23,6 +24,7 @@ export class HomePage implements OnInit {
 
     this.CommessePage = CommessePage;
     this.FeriePage = FeriePage;
+    this.AssentiPage = AssentiPage;
 
   }
 
@@ -30,22 +32,8 @@ export class HomePage implements OnInit {
     this.UsersServices.getAssenti()
       .subscribe(
       (response) => {
-        // this.AssentiOggi = response.
-        console.log("chi non c'è");
         this.AssentiOggi = response.assenze_oggi;
-        this.AssentiFuturi = response.assenze_domani;
       }
       )
-
-
   }
-
-
-
-  gotoAssenti() {
-    this.navCtrl.push(AssentiPage);
-  }
-
-
-
 }

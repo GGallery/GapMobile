@@ -30,11 +30,7 @@ export class CommessePage2 {
 
   }
 
-  onInserisciCommessa(f: NgForm) {
-    console.log(f);
-
-  }
-
+ 
   dataOggi() {
     this.giorno = new Date().toISOString();
   }
@@ -46,10 +42,7 @@ export class CommessePage2 {
     console.log(this.giorno);
 
   }
-
-
-
-
+ 
   nOre(n: number) {
     if (n == 12)
       this.n_ore = this.n_ore + 0.5;
@@ -57,5 +50,12 @@ export class CommessePage2 {
       this.n_ore = n;
   }
 
+
+onInserisciCommessa(f:NgForm){
+  this.commesseService.storeData(f);
+
+
+
+}
 
 }

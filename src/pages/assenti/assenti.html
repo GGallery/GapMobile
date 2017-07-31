@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Assenti di oggi
+      Assenze di oggi
     </ion-list-header>
     <ion-item *ngFor="let item of AssentiOggi">
       <h5>{{ item.user.nome }} {{ item.user.cognome }}
@@ -28,11 +28,11 @@
 
   <ion-list>
     <ion-list-header>
-      Assenti futuri
+      Assenze futuri
     </ion-list-header>
     <ion-item *ngFor="let item of AssentiFuturi">
       <h5>{{ item.user.nome }} {{ item.user.cognome }}<br>
-        <ion-note>dalle {{ item.giorno | date: 'dd-MM-yyyy HH:mm' }} per {{item.n_ore}} ore</ion-note>
+        <ion-note>il giorno {{ item.giorno | date: 'dd-MM-yyyy' }} dalle {{ item.giorno | date: 'HH:mm' }} per {{item.n_ore}} ore</ion-note>
       </h5>
     </ion-item>
   </ion-list>

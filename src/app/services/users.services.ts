@@ -21,7 +21,6 @@ export class UsersServices {
             .map(
             (response: Response) => {
                 const data = response.json();
-                console.log(data);
                 return data;
             },
 

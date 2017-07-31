@@ -7,20 +7,14 @@ import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class CommesseServices {
-    
+
     url: string = 'http://office.ggallery.it/';
 
     constructor(private http: Http) {
 
     }
- 
-    generateProtocollo(): string {
-        let valore = "G" + Math.random() * 100;
-        return valore;
-    }
 
     getItems(method) {
-
         return this.http.get(this.url + method)
             .map(
             (response: Response) => {
@@ -36,6 +30,15 @@ export class CommesseServices {
             )
     }
 
+
+    storeData(f: any): any {
+        const method = "store";
+        const headers = new Headers({ 'ContentType': 'Json' });
+        this.http.put(this.url , f)
+
+        return true;
+
+    }
 
 }
 

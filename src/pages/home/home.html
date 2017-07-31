@@ -2,7 +2,7 @@
   <h2 text-center>Welcome to GAP Mobile!</h2>
   <br>
 
-  <button ion-button icon-left full color="default" [navPush]="CommessePage">
+  <button ion-button icon-left  full color="default" [navPush]="CommessePage">
   <ion-icon name="calendar"></ion-icon>
   Inserisci commesse
 </button>
@@ -19,7 +19,7 @@
   <ion-list>
     <ion-list-header>
       Assenti di oggi
-      <button ion-button outline item-end icon-left (click)="gotoAssenti()"> Mostra futuri </button>
+      <button ion-button outline item-end icon-left   [navPush]="AssentiPage"> Mostra futuri </button>
     </ion-list-header>
     <ion-item *ngFor="let item of AssentiOggi">
       <h5>{{ item.user.nome }} {{ item.user.cognome }}
