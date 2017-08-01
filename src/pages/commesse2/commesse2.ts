@@ -37,10 +37,7 @@ export class CommessePage2 {
 
   dataIeri() {
     let ieri = ( d => new Date(d.setDate(d.getDate()-1)) )(new Date);
-    console.log(ieri.toISOString());
     this.giorno = ieri.toISOString();
-    console.log(this.giorno);
-
   }
  
   nOre(n: number) {

@@ -7,7 +7,7 @@ import { AuthService } from "../../app/services/auth";
 
 @Component({
   selector: 'page-signin',
-  templateUrl: 'signin.html'
+  templateUrl: 'signin.html' 
 })
 export class SigninPage {
 

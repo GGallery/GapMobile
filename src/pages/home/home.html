@@ -1,25 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>G A P</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
 <ion-content padding>
-  <h2 text-center>Welcome to GAP Mobile!</h2>
-  <br>
 
-  <button ion-button icon-left  full color="default" [navPush]="CommessePage">
-  <ion-icon name="calendar"></ion-icon>
-  Inserisci commesse
-</button>
-
-  <br>
-
-  <button ion-button icon-left full color="default" [navPush]="FeriePage">
-  <ion-icon name="plane"></ion-icon>
-  Prenota Ferie/Permessi/Recuperi
-</button>
-
-
-<br><br><br>
   <ion-list>
     <ion-list-header>
       Assenti di oggi
-      <button ion-button outline item-end icon-left   [navPush]="AssentiPage"> Mostra futuri </button>
     </ion-list-header>
     <ion-item *ngFor="let item of AssentiOggi">
       <h5>{{ item.user.nome }} {{ item.user.cognome }}
@@ -27,5 +23,6 @@
       </h5>
     </ion-item>
   </ion-list>
+
 
 </ion-content>

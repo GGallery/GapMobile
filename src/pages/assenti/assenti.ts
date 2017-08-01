@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { ServerServices } from "../../app/services/server.services";
 
@@ -14,19 +14,25 @@ export class AssentiPage implements OnInit {
   AssentiFuturi: any;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public ServerService: ServerServices) {
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public ServerService: ServerServices,
+    public loadingCtrl: LoadingController
+  ) {
   }
 
 
   ngOnInit() {
+    const loading = this.loadingCtrl.create({
+      content: 'Sto recuperando tutte le assenze future...'
+    });
+    loading.present();
     this.ServerService.getAssenti()
       .subscribe(
       (response) => {
-        console.log("chi non c'è");
         this.AssentiOggi = response.assenze_oggi;
         this.AssentiFuturi = response.assenze_domani;
+        loading.dismiss();
       }
       )
 
