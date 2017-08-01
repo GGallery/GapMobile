@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, NavParams } from 'ionic-angular';
-import { CommesseServices } from "../../app/services/commesse.services";
 
 import { NgForm } from "@angular/forms";
+import { ServerServices } from "../../app/services/server.services";
 
 @Component({
   selector: 'page-commesse2',
@@ -22,7 +22,7 @@ export class CommessePage2 {
     public navCtrl: NavController,
     public navParam: NavParams,
     public toastCtrl: ToastController,
-    public commesseService: CommesseServices
+    public ServerService: ServerServices
   ) {
     this.commessa = this.navParam.data;
     this.id_commessa = this.commessa.id;
@@ -37,10 +37,7 @@ export class CommessePage2 {
 
   dataIeri() {
     let ieri = ( d => new Date(d.setDate(d.getDate()-1)) )(new Date);
-    console.log(ieri.toISOString());
     this.giorno = ieri.toISOString();
-    console.log(this.giorno);
-
   }
  
   nOre(n: number) {
@@ -52,7 +49,7 @@ export class CommessePage2 {
 
 
 onInserisciCommessa(f:NgForm){
-  this.commesseService.storeData(f);
+  this.ServerService.storeData(f);
 
 
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
-import { CommesseServices } from "../../app/services/commesse.services";
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 
 import { CommessePage2 } from "../commesse2/commesse2";
+import { ServerServices } from "../../app/services/server.services";
 
 @Component({
   selector: 'page-commesse',
@@ -12,12 +12,13 @@ export class CommessePage implements OnInit {
 
   commesseList: any[] = []
   searchQuery: string = '';
-  
+
 
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public commesseService: CommesseServices
+    public ServerService: ServerServices,
+    public loadingCtrl: LoadingController
   ) {
 
   }
@@ -30,10 +31,15 @@ export class CommessePage implements OnInit {
 
 
   getMy() {
-    this.commesseService.getItems('commesseMie').
+    const loading = this.loadingCtrl.create({
+      content: 'Sto recuperando le tue commesse...'
+    });
+    loading.present();
+    this.ServerService.getItems('commesseMie').
       subscribe(
       (commesse: any[]) => {
-        this.commesseList = commesse
+        this.commesseList = commesse, 
+        loading.dismiss();
       },
       (error) => {
         console.log(error),
@@ -43,10 +49,15 @@ export class CommessePage implements OnInit {
   }
 
   getAll() {
-    this.commesseService.getItems('commesseAll').
+    const loading = this.loadingCtrl.create({
+      content: 'Sto recuperando tutte le commesse...'
+    });
+    loading.present();
+    this.ServerService.getItems('commesseAll').
       subscribe(
       (commesse: any[]) => {
-        this.commesseList = commesse
+        this.commesseList = commesse, 
+        loading.dismiss();
 
       },
       (error) => {
@@ -56,7 +67,7 @@ export class CommessePage implements OnInit {
       )
   }
 
-  selectItem(commessa : any) {
+  selectItem(commessa: any) {
     this.navCtrl.push(CommessePage2, commessa);
   }
 

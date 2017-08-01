@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FeriePage } from "../ferie/ferie";
 import { CommessePage } from "../commesse/commesse";
-import { UsersServices } from "../../app/services/users.services";
+
 import { AssentiPage } from "../assenti/assenti";
+import { ServerServices } from "../../app/services/server.services";
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,7 @@ export class HomePage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public UsersServices: UsersServices
+    public ServerService: ServerServices
   ) {
 
     this.CommessePage = CommessePage;
@@ -29,7 +30,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.UsersServices.getAssenti()
+    this.ServerService.getAssenti()
       .subscribe(
       (response) => {
         this.AssentiOggi = response.assenze_oggi;
