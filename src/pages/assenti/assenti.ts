@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UsersServices } from "../../app/services/users.services";
+
+import { ServerServices } from "../../app/services/server.services";
 
 
 @Component({
@@ -12,12 +13,15 @@ export class AssentiPage implements OnInit {
   AssentiOggi: any;
   AssentiFuturi: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private UsersServices: UsersServices) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public ServerService: ServerServices) {
   }
 
 
   ngOnInit() {
-    this.UsersServices.getAssenti()
+    this.ServerService.getAssenti()
       .subscribe(
       (response) => {
         console.log("chi non c'è");
