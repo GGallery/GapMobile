@@ -20,6 +20,9 @@ import { AssentiPage } from "../pages/assenti/assenti";
 import { AuthService } from "./services/auth";
 import { ServerServices } from "./services/server.services";
 
+import { IonicStorageModule } from '@ionic/storage';
+import { SigninPage } from "../pages/signin/signin";
+
 const cloudSettings: CloudSettings = {
   'core': {
     'app_id': 'eb8229b2'
@@ -29,40 +32,43 @@ const cloudSettings: CloudSettings = {
 @NgModule({
   declarations: [
     MyApp,
-    
-    ContactPage,
-    HomePage,
-    FeriePage, 
-    CommessePage,
-    CommessePage2,
-    TabsPage, 
-    AssentiPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-     CloudModule.forRoot(cloudSettings),
-      HttpModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    
+
     ContactPage,
     HomePage,
     FeriePage,
     CommessePage,
     CommessePage2,
-    TabsPage, 
-    AssentiPage
+    TabsPage,
+    AssentiPage, 
+    SigninPage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings),
+    HttpModule,
+    IonicStorageModule.forRoot()
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+
+    ContactPage,
+    HomePage,
+    FeriePage,
+    CommessePage,
+    CommessePage2,
+    TabsPage,
+    AssentiPage, 
+    SigninPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServerServices, 
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ServerServices,
     AuthService
 
   ]
 })
-export class AppModule {}
+export class AppModule { }

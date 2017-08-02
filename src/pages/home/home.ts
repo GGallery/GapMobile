@@ -6,6 +6,8 @@ import { CommessePage } from "../commesse/commesse";
 import { AssentiPage } from "../assenti/assenti";
 import { ServerServices } from "../../app/services/server.services";
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,13 +16,15 @@ export class HomePage implements OnInit {
 
   CommessePage: any;
   FeriePage: any;
-  AssentiPage : any;
+  AssentiPage: any;
   AssentiOggi: any;
   AssentiFuturi: any;
+  
 
   constructor(
     public navCtrl: NavController,
-    public ServerService: ServerServices
+    public ServerService: ServerServices,
+    private storage: Storage
   ) {
 
     this.CommessePage = CommessePage;
@@ -30,6 +34,8 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+  
+
     this.ServerService.getAssenti()
       .subscribe(
       (response) => {
