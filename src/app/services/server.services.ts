@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from '@angular/http';
 import { Observable } from "rxjs/Rx";
+import { Storage } from '@ionic/storage';
+import { ToastController } from "ionic-angular";
 
 
 // import 'rxjs/Rx';
@@ -13,17 +15,22 @@ export class ServerServices {
     url: string = 'http://office.ggallery.dev/api/';
     public api_token: string;
     public isAuth = false;
+    public User: any;
 
 
 
-    constructor(private http: Http, ) {
+    constructor(
+        private http: Http,
+        private storage: Storage, 
+    public toastCtrl: ToastController,) {
 
     }
 
     getAssenti() {
 
         let method = "assenti"
-        return this.http.get(this.url + method)
+        let token = "?token=" + this.api_token
+        return this.http.get(this.url + method + token)
             .map(
             (response: Response) => {
                 const data = response.json();
@@ -37,9 +44,12 @@ export class ServerServices {
             )
     }
 
-
+    // GET  COMMESSE 
     getItems(method) {
-        return this.http.get(this.url + method)
+
+        let token = "?token=" + this.api_token
+
+        return this.http.get(this.url + method + token)
             .map(
             (response: Response) => {
                 const data = response.json();
@@ -65,21 +75,27 @@ export class ServerServices {
 
     }
 
-
-    userAuthBakup(username: string, password: string) {
+    userAuth(email: string, password: string) {
         // set a key/value
-        var urlParam = {
-            'username': username,
-            'password': password
-        }
-        const method = 'userAuth';
+        var urlParam = 'login?email=' + email + '&password=' + password;
 
-        return this.http.get(this.url + method, { params: urlParam })
+
+        // const method = 'login?email=antonio@ggallery.it&password=GGallery00';
+
+        return this.http.get(this.url + urlParam)
             .map(
             (response: Response) => {
                 const data = response.json();
-                console.log(data);
-                return data;
+                if (data.valid == 'true') {
+                    this.storage.set('api_token', data.result);
+                    this.api_token = data.result;
+                    this.isAuth = true;
+                    this.userInfo().subscribe();
+                    let account = { 'email': email, 'password': password }
+                    this.storage.set('account', account);
+                    return data;
+                } else
+                    return Observable.throw('Errore accesso');
             },
 
         ).catch(
@@ -91,34 +107,32 @@ export class ServerServices {
     }
 
 
-    userAuth(username: string, password: string) {
+    userInfo() {
         // set a key/value
-        var urlParam = {
-            'username': username,
-            'password': password
-        }
-        const method = 'login';
+        var urlParam = 'get_user_details';
 
-        const headers = new Headers ({'ContentType' : 'Application/Json'});
-        
-        return this.http.post(this.url + method, { params: urlParam })
+        urlParam += '?token=' + this.api_token;
+
+        // const method = 'login?email=antonio@ggallery.it&password=GGallery00';
+
+        return this.http.get(this.url + urlParam)
             .map(
             (response: Response) => {
                 const data = response.json();
-                console.log(data);
-                return data;
+                this.storage.set('User', data.result);
+                console.log('Bentornato ' + data.result.nome); 
+                
             },
 
         ).catch(
             (error: Response) => {
-                return Observable.throw('Errore in lettura');
+                return Observable.throw('Errore in lettura utente');
             }
             )
 
     }
 
 
- 
 
 
 }

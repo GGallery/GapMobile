@@ -6,7 +6,8 @@ import { CommessePage } from "../commesse/commesse";
 import { AssentiPage } from "../assenti/assenti";
 import { ServerServices } from "../../app/services/server.services";
 
-import { Storage } from '@ionic/storage';
+ 
+ 
 
 @Component({
   selector: 'page-home',
@@ -23,19 +24,22 @@ export class HomePage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public ServerService: ServerServices,
-    private storage: Storage
+    public ServerService: ServerServices 
+    
   ) {
 
     this.CommessePage = CommessePage;
     this.FeriePage = FeriePage;
     this.AssentiPage = AssentiPage;
 
+
   }
 
   ngOnInit() {
-  
 
+    
+
+    // console.log(this.ServerService.User);
     this.ServerService.getAssenti()
       .subscribe(
       (response) => {

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { LoadingController, AlertController } from "ionic-angular";
+import { LoadingController, AlertController, NavController } from "ionic-angular";
 import { ServerServices } from "../../app/services/server.services";
+
+import { TabsPage } from "../tabs/tabs";
 
 
 
@@ -12,33 +14,39 @@ import { ServerServices } from "../../app/services/server.services";
 })
 export class SigninPage {
 
-  constructor(private ServerService: ServerServices,
+  constructor(
+    private ServerService: ServerServices,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private nav : NavController
+  ) {
   }
 
   onSignin(form: NgForm) {
 
     const loading = this.loadingCtrl.create({
-      content: 'Signing you in...'
+      content: 'Accesso in corso...'
     });
     loading.present();
 
-    this.ServerService.userAuth("antonio@ggallery.it", "GGallery00")
+    this.ServerService.userAuth(form.value.email, form.value.password)
       .subscribe(
 
       data => {
         loading.dismiss(),
-          console.log(data);
+        this.nav.setRoot(TabsPage);
+        
+          console.log('ho il token!!' + this.ServerService.api_token)
+      },
+
+      error => {
+        loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Accesso fallito!',
+          message: error.message,
+          buttons: ['Ok']
+        });
+        alert.present();
       })
-    // .catch(error => {
-    //   loading.dismiss();
-    //   const alert = this.alertCtrl.create({
-    //     title: 'Signin failed!',
-    //     message: error.message,
-    //     buttons: ['Ok']
-    //   });
-    //   alert.present();
-    // });
   }
 }
