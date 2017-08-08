@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs/Rx";
 import { Storage } from '@ionic/storage';
 import { ToastController } from "ionic-angular";
@@ -21,8 +21,8 @@ export class ServerServices {
 
     constructor(
         private http: Http,
-        private storage: Storage, 
-    public toastCtrl: ToastController,) {
+        private storage: Storage,
+        public toastCtrl: ToastController, ) {
 
     }
 
@@ -44,9 +44,10 @@ export class ServerServices {
             )
     }
 
-    // GET  COMMESSE 
-    getItems(method) {
 
+    get_all_commesse() {
+
+        let method = "commesse_all"
         let token = "?token=" + this.api_token
 
         return this.http.get(this.url + method + token)
@@ -64,13 +65,59 @@ export class ServerServices {
             )
     }
 
+    get_mie_commesse() {
 
-    storeData(f: any): any {
-        const method = "store";
-        // const headers = new Headers({ 'ContentType': 'Json' });
-        // this.http.put(this.url , f)
+        let method = "commesse_mie"
+        let token = "?token=" + this.api_token
 
-        return true;
+        return this.http.get(this.url + method + token)
+            .map(
+            (response: Response) => {
+                const data = response.json();
+                console.log(data);
+                return data;
+            },
+
+        ).catch(
+            (error: Response) => {
+                return Observable.throw('Errore in lettura');
+            }
+            )
+    }
+
+    commessa_store(f: any) {
+
+        console.log(f);
+
+        const method = 'commessa_store';
+        const params = new URLSearchParams();
+        params.set('token', this.api_token);
+        params.set('commessa_id', f.value.id_commessa);
+        params.set('giorno', f.value.giorno);
+        params.set('n_ore', f.value.n_ore);
+        params.set('type', f.value.tipologia);
+        params.set('dalle_ore', '00:00');
+
+        
+
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+
+        return this.http.post(this.url + method, params.toString(), { headers: headers })
+            .map(
+            (response: Response) => {
+                const data = response.json();
+                console.log(data);
+                return data;
+            },
+
+        ).catch(
+            (error: Response) => {
+                return Observable.throw('Errore in lettura');
+            }
+            )
 
 
     }
@@ -120,8 +167,8 @@ export class ServerServices {
             (response: Response) => {
                 const data = response.json();
                 this.storage.set('User', data.result);
-                console.log('Bentornato ' + data.result.nome); 
-                
+                console.log('Bentornato ' + data.result.nome);
+
             },
 
         ).catch(

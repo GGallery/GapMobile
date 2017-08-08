@@ -35,7 +35,7 @@ export class CommessePage implements OnInit {
       content: 'Sto recuperando le tue commesse...'
     });
     loading.present();
-    this.ServerService.getItems('commesseMie').
+    this.ServerService.get_mie_commesse().
       subscribe(
       (commesse: any[]) => {
         this.commesseList = commesse, 
@@ -53,7 +53,7 @@ export class CommessePage implements OnInit {
       content: 'Sto recuperando tutte le commesse...'
     });
     loading.present();
-    this.ServerService.getItems('commesseAll').
+    this.ServerService.get_all_commesse().
       subscribe(
       (commesse: any[]) => {
         this.commesseList = commesse, 

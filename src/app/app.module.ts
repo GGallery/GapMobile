@@ -67,7 +67,8 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServerServices,
-    AuthService
+    AuthService, 
+    
 
   ]
 })

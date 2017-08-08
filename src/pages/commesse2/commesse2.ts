@@ -12,7 +12,9 @@ export class CommessePage2 {
 
 
   commessa: any
-  giorno: string = new Date().toISOString()
+   
+  giorno: string ;
+
   tipologia: number
   id_commessa: number;
   n_ore: number;
@@ -26,20 +28,22 @@ export class CommessePage2 {
   ) {
     this.commessa = this.navParam.data;
     this.id_commessa = this.commessa.id;
-    this.tipologia= 0;
+    this.tipologia = 0;
+     
+    
 
   }
 
- 
+
   dataOggi() {
     this.giorno = new Date().toISOString();
   }
 
   dataIeri() {
-    let ieri = ( d => new Date(d.setDate(d.getDate()-1)) )(new Date);
+    let ieri = (d => new Date(d.setDate(d.getDate() - 1)))(new Date);
     this.giorno = ieri.toISOString();
   }
- 
+
   nOre(n: number) {
     if (n == 12)
       this.n_ore = this.n_ore + 0.5;
@@ -48,11 +52,16 @@ export class CommessePage2 {
   }
 
 
-onInserisciCommessa(f:NgForm){
-  this.ServerService.storeData(f);
+  onInserisciCommessa(f: NgForm) {
+    this.ServerService.commessa_store(f)
+    .subscribe(
+      (result)=>{
+        console.log(result);
+      }
+    );
 
 
 
-}
+  }
 
 }
