@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController, LoadingController } from 'ionic-angular';
+import { NavController,  LoadingController } from 'ionic-angular';
 
 import { CommessePage2 } from "../commesse2/commesse2";
 import { ServerServices } from "../../app/services/server.services";
+import { ToastServices } from "../../app/services/toast.services";
 
 @Component({
   selector: 'page-commesse',
@@ -16,8 +17,9 @@ export class CommessePage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public toastCtrl: ToastController,
+    
     public ServerService: ServerServices,
+    public ToastService : ToastServices,
     public loadingCtrl: LoadingController
   ) {
 
@@ -43,7 +45,7 @@ export class CommessePage implements OnInit {
       },
       (error) => {
         console.log(error),
-          this.Toast("Errore caricamento commesse")
+          this.ToastService.Toast("Errore caricamento commesse")
       }
       )
   }
@@ -62,7 +64,7 @@ export class CommessePage implements OnInit {
       },
       (error) => {
         console.log(error),
-          this.Toast("Errore caricamento commesse")
+          this.ToastService.Toast("Errore caricamento commesse")
       }
       )
   }
@@ -94,12 +96,6 @@ export class CommessePage implements OnInit {
 
   }
 
-  Toast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000
-    });
-    toast.present();
-  }
+ 
 
 }

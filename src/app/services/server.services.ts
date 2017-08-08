@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from "rxjs/Rx";
 import { Storage } from '@ionic/storage';
 import { ToastController } from "ionic-angular";
@@ -12,7 +12,7 @@ import { ToastController } from "ionic-angular";
 @Injectable()
 export class ServerServices {
 
-    url: string = 'http://office.ggallery.dev/api/';
+    url: string = 'http://office.ggallery.it/api/';
     public api_token: string;
     public isAuth = false;
     public User: any;
@@ -96,7 +96,7 @@ export class ServerServices {
         params.set('giorno', f.value.giorno);
         params.set('n_ore', f.value.n_ore);
         params.set('type', f.value.tipologia);
-        params.set('dalle_ore', '00:00');
+        params.set('dalle_ore', '00');
 
         
 
@@ -109,7 +109,6 @@ export class ServerServices {
             .map(
             (response: Response) => {
                 const data = response.json();
-                console.log(data);
                 return data;
             },
 

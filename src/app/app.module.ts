@@ -17,11 +17,12 @@ import { HttpModule } from "@angular/http";
 import { CommessePage2 } from "../pages/commesse2/commesse2";
 
 import { AssentiPage } from "../pages/assenti/assenti";
-import { AuthService } from "./services/auth";
+
 import { ServerServices } from "./services/server.services";
 
 import { IonicStorageModule } from '@ionic/storage';
 import { SigninPage } from "../pages/signin/signin";
+import { ToastServices } from "./services/toast.services";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -67,7 +68,8 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServerServices,
-    AuthService, 
+    ToastServices
+    
     
 
   ]

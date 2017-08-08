@@ -3,6 +3,7 @@ import { NavController, ToastController, NavParams } from 'ionic-angular';
 
 import { NgForm } from "@angular/forms";
 import { ServerServices } from "../../app/services/server.services";
+import { ToastServices } from "../../app/services/toast.services";
 
 @Component({
   selector: 'page-commesse2',
@@ -12,8 +13,8 @@ export class CommessePage2 {
 
 
   commessa: any
-   
-  giorno: string ;
+
+  giorno: string;
 
   tipologia: number
   id_commessa: number;
@@ -23,25 +24,24 @@ export class CommessePage2 {
 
     public navCtrl: NavController,
     public navParam: NavParams,
-    public toastCtrl: ToastController,
+    public ToastService: ToastServices,
     public ServerService: ServerServices
   ) {
     this.commessa = this.navParam.data;
     this.id_commessa = this.commessa.id;
     this.tipologia = 0;
-     
-    
+    this.giorno = new Date().toISOString().slice(0, 10);
 
   }
 
 
   dataOggi() {
-    this.giorno = new Date().toISOString();
+    this.giorno = new Date().toISOString().slice(0, 10);
   }
 
   dataIeri() {
     let ieri = (d => new Date(d.setDate(d.getDate() - 1)))(new Date);
-    this.giorno = ieri.toISOString();
+    this.giorno = ieri.toISOString().slice(0, 10);
   }
 
   nOre(n: number) {
@@ -54,11 +54,17 @@ export class CommessePage2 {
 
   onInserisciCommessa(f: NgForm) {
     this.ServerService.commessa_store(f)
-    .subscribe(
-      (result)=>{
-        console.log(result);
+      .subscribe(
+      (result) => {
+        if (result.esito == 'true') {
+          this.navCtrl.pop();
+          this.ToastService.Toast("Commessa caricata correttamente");
+          
+        }
+        else
+          this.ToastService.Toast("Errore caricamento!")
       }
-    );
+      );
 
 
 
