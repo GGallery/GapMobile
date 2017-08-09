@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams } from 'ionic-angular';
+import { NavController,  NavParams } from 'ionic-angular';
 
 import { NgForm } from "@angular/forms";
 import { ServerServices } from "../../app/services/server.services";
