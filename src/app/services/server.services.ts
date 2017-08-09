@@ -12,7 +12,7 @@ import { ToastController } from "ionic-angular";
 @Injectable()
 export class ServerServices {
 
-    url: string = 'http://office.ggallery.it/api/';
+    url: string = 'http://office.ggallery.dev/api/';
     public api_token: string;
     public isAuth = false;
     public User: any;
@@ -85,6 +85,27 @@ export class ServerServices {
             )
     }
 
+    get_calendario(data: string) {
+        let method = "get_calendario"
+        let token = "?token=" + this.api_token
+        let querydata = "&giorno="+data;
+
+        return this.http.get(this.url + method + token+ querydata)
+            .map(
+            (response: Response) => {
+                const data = response.json();
+                console.log(data);
+                return data;
+            },
+
+        ).catch(
+            (error: Response) => {
+                return Observable.throw('Errore in lettura');
+            }
+            )
+
+    }
+
     commessa_store(f: any) {
 
         console.log(f);
@@ -98,7 +119,7 @@ export class ServerServices {
         params.set('type', f.value.tipologia);
         params.set('dalle_ore', '00');
 
-        
+
 
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'

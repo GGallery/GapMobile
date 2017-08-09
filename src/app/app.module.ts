@@ -23,6 +23,7 @@ import { ServerServices } from "./services/server.services";
 import { IonicStorageModule } from '@ionic/storage';
 import { SigninPage } from "../pages/signin/signin";
 import { ToastServices } from "./services/toast.services";
+import { CalendarioPage } from "../pages/calendario/calendario";
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -41,7 +42,8 @@ const cloudSettings: CloudSettings = {
     CommessePage2,
     TabsPage,
     AssentiPage, 
-    SigninPage
+    SigninPage, 
+    CalendarioPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ const cloudSettings: CloudSettings = {
     CommessePage2,
     TabsPage,
     AssentiPage, 
-    SigninPage
+    SigninPage,
+    CalendarioPage
   ],
   providers: [
     StatusBar,
