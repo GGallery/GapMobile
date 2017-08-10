@@ -12,7 +12,7 @@ import { ToastController } from "ionic-angular";
 @Injectable()
 export class ServerServices {
 
-    url: string = 'http://office.ggallery.dev/api/';
+    url: string = 'http://office.ggallery.it/api/';
     public api_token: string;
     public isAuth = false;
     public User: any;

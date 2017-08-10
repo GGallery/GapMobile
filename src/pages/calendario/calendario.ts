@@ -19,7 +19,7 @@ export class CalendarioPage {
   commesse: any = [];
   totore: number = 0;
   giorno: string;
-
+  giorno_date: any = new Date()
 
   constructor(
     public navCtrl: NavController,
@@ -27,10 +27,29 @@ export class CalendarioPage {
     public ServerServices: ServerServices
   ) {
 
-    this.giorno = new Date().toISOString().slice(0, 10);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
     this.get_calendario(this.giorno);
 
   }
+
+  dataPrima() {
+    this.giorno_date = (d => new Date(d.setDate(this.giorno_date.getDate() - 1)))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+    this.get_calendario(this.giorno);
+  }
+
+  dataDopo() {
+    this.giorno_date = (d => new Date(d.setDate(this.giorno_date.getDate() + 1)))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+    this.get_calendario(this.giorno);
+  }
+
+  dataOggi() {
+    this.giorno_date = (d => new Date(d.setDate(d.getDate())))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+    this.get_calendario(this.giorno);
+  }
+
 
   get_calendario(giorno: string) {
     this.ServerServices.get_calendario(this.giorno)
@@ -53,7 +72,7 @@ export class CalendarioPage {
 
 
 
-  addCommessa(){
+  addCommessa() {
 
     this.navCtrl.push(CommessePage);
   }

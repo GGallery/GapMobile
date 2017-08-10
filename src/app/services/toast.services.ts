@@ -12,6 +12,8 @@ export class ToastServices {
         let toast = this.toastCtrl.create({
             message: msg,
             duration: 3000
+
+            
         });
         toast.present();
     }

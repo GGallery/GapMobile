@@ -14,7 +14,9 @@ export class CommessePage2 {
 
   commessa: any
 
-  giorno: string;
+ giorno: string;
+  giorno_date: any = new Date()
+
 
   tipologia: number
   id_commessa: number;
@@ -34,15 +36,33 @@ export class CommessePage2 {
 
   }
 
-
-  dataOggi() {
-    this.giorno = new Date().toISOString().slice(0, 10);
-  }
+ 
 
   dataIeri() {
-    let ieri = (d => new Date(d.setDate(d.getDate() - 1)))(new Date);
-    this.giorno = ieri.toISOString().slice(0, 10);
+    this.giorno_date = (d => new Date(d.setDate(d.getDate() - 1)))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
   }
+
+
+ dataPrima() {
+    this.giorno_date = (d => new Date(d.setDate(this.giorno_date.getDate() - 1)))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+  }
+
+  dataDopo() {
+    this.giorno_date = (d => new Date(d.setDate(this.giorno_date.getDate() + 1)))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+  }
+
+  dataOggi() {
+    this.giorno_date = (d => new Date(d.setDate(d.getDate())))(new Date);
+    this.giorno = this.giorno_date.toISOString().slice(0, 10);
+  }
+
+
+
+
+
 
   nOre(n: number) {
     if (n == 12)
